@@ -9,8 +9,6 @@ This project automates the deployment of an EKS cluster on AWS and configures mo
 - **Dependencies**: Install dependencies by running:
   ```bash
   pip install -r requirements.txt
-
-## SetuSetup Instructions
 * Clone the Repository:
     ```bash
   git clone https://github.com/your-repo-name.git
