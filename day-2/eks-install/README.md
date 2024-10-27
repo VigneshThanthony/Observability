@@ -11,17 +11,17 @@ This project automates the deployment of an EKS cluster on AWS and configures mo
   pip install -r requirements.txt
 
 ## SetuSetup Instructions
-Clone the Repository:
+* Clone the Repository:
     ```bash
   git clone https://github.com/your-repo-name.git
   cd your-repo-name
 
 ## Pulumi Stack Setup: Initialize a Pulumi stack for the environment:
-Initialize a Pulumi stack for the environment
+* Initialize a Pulumi stack for the environment
     ```bash
   pulumi stack init dev
 
-Configure environment settings (e.g., region, vpcCidr) in environments/<environment>.yaml.
+* Configure environment settings (e.g., region, vpcCidr) in environments/<environment>.yaml.
 
 ## Running the Code
 * Preview Changes
@@ -32,13 +32,11 @@ Configure environment settings (e.g., region, vpcCidr) in environments/<environm
     ```bash
     pulumi up
 
-
-
 ## Access Monitoring Tools
 
 Use port-forwarding commands to access Prometheus and Grafana UIs. (Check in other readme of day2)
 
-Verify deployment using:
+* Verify deployment using:
     ```bash
     kubectl get all -n monitoring
 
