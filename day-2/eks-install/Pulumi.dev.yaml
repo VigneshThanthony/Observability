@@ -1,3 +1,2 @@
 config:
   eks-install:environment: dev
-  eks-install:region: us-west-2

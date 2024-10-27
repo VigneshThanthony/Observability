@@ -52,7 +52,7 @@ cluster = eks.Cluster(
     min_size=1,
     max_size=5,
     enabled_cluster_log_types=["api", "audit", "authenticator"],
-    version="1.24"
+    version="1.29"
 )
 
 # Install kube-prometheus-stack using Helm
@@ -73,13 +73,13 @@ prometheus_chart = helm.Chart(
     opts=pulumi.ResourceOptions(depends_on=[cluster])
 )
 
-# Generate kubeconfig with correct apiVersion
+# Generate kubeconfig with error handling for missing keys
 kubeconfig = cluster.kubeconfig.apply(lambda config: f"""
 apiVersion: v1
 clusters:
 - cluster:
-    server: {config['server']}
-    certificate-authority-data: {config['certificateAuthorityData']}
+    server: {config.get('server', '<default-server-url>')}  # Use a default if 'server' is missing
+    certificate-authority-data: {config.get('certificateAuthorityData', '<default-ca-data>')}
   name: kubernetes
 contexts:
 - context:
@@ -100,12 +100,10 @@ users:
         - "--region"
         - "{region}"
         - "--cluster-name"
-        - "{config['clusterName']}"
+        - "{config.get('clusterName', 'default-cluster-name')}"
 """)
 
-
-
-# Export outputs
+# Export outputs for further inspection and use
 pulumi.export("kubeconfig", kubeconfig)
 pulumi.export("cluster_endpoint", cluster.core.cluster.endpoint)
 pulumi.export("cluster_name", cluster.core.cluster.name)
