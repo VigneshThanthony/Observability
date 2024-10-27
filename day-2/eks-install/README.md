@@ -10,43 +10,39 @@ This project automates the deployment of an EKS cluster on AWS and configures mo
   ```bash
   pip install -r requirements.txt
 
-
 ## SetuSetup Instructions
 Clone the Repository:
-
- ```bash
+    ```bash
   git clone https://github.com/your-repo-name.git
   cd your-repo-name
 
 ## Pulumi Stack Setup: Initialize a Pulumi stack for the environment:
+Initialize a Pulumi stack for the environment
+    ```bash
+  pulumi stack init dev
 
-Configure Environment: Add configuration settings (e.g., region, vpcCidr) in environments/<environment>.yaml.
+Configure environment settings (e.g., region, vpcCidr) in environments/<environment>.yaml.
 
-## Deployment Instructions
+## Running the Code
+* Preview Changes
+    ```bash
+    pulumi preview
 
-Preview Changes:
+* Deploy
+    ```bash
+    pulumi up
 
-Deploy:
+
 
 ## Access Monitoring Tools
 
-Use port-forwarding commands to access Prometheus and Grafana UIs. Verify deployment using:
+Use port-forwarding commands to access Prometheus and Grafana UIs. (Check in other readme of day2)
 
- ```bash
-kubectl get all -n monitoring
+Verify deployment using:
+    ```bash
+    kubectl get all -n monitoring
 
-Cleanup Instructions
-To delete resources:
+## Cleanup 
+pulumi destroy
 
-State Management Options
-Pulumi provides two ways to manage state: Pulumi Cloud or local backend.
 
-Using Pulumi Cloud
-Pulumi Cloud provides secure, collaborative state management with history tracking.
-
-Log in:
-Using Local State Management
-For a local setup, Pulumi stores state files on your filesystem.
-
-Set Local Backend:
-Backup: Regularly back up the .pulumi directory, as it stores
